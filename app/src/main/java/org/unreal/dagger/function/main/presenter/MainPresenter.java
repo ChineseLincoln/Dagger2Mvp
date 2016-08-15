@@ -8,6 +8,7 @@ import org.unreal.dagger.data.http.taobao.vo.TaobaoIPLocationInfo;
 import org.unreal.dagger.function.main.contract.MainContract;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -32,7 +33,7 @@ public class MainPresenter implements MainContract.presenter {
 
     @Inject
     public MainPresenter(MainContract.View view,
-                         SharedPreferences sharedPreferences,
+                         @Named("default") SharedPreferences sharedPreferences,
                          TaobaoIPLocationService locationService,
                          UserService userService) {
         this.view = view;
