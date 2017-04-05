@@ -69,7 +69,6 @@ public class UserPreference {
                 , KeyStore.DES_KEY)).trim();
     }
 
-
     private byte[] padding(String arg_text) {
         byte[] encrypt = arg_text.getBytes();
 
