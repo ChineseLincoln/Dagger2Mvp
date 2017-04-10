@@ -1,6 +1,5 @@
 package com.drawthink.telcom.quality.component;
 
-import com.drawthink.telcom.quality.function.main.MainActivity;
 import com.drawthink.telcom.quality.module.AppModule;
 
 import javax.inject.Singleton;

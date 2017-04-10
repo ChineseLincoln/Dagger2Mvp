@@ -27,7 +27,7 @@ import org.unreal.widget.R;
  */
 public class WaitScreen {
     private PopupWindow popupWindow;
-    private Context context;
+    private Activity context;
     private View view;
     private final View progress;
     private final View wait;
@@ -51,9 +51,11 @@ public class WaitScreen {
      * 弹出等待提示框
      */
     public PopupWindow show() {
-        popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 0, 0);
-        Animation rotateAnim = AnimationUtils.loadAnimation(context, R.anim.rotate_progress);
-        progress.startAnimation(rotateAnim);
+        context.getWindow().getDecorView().post(() -> {
+            popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 0, 0);
+            Animation rotateAnim = AnimationUtils.loadAnimation(context, R.anim.rotate_progress);
+            progress.startAnimation(rotateAnim);
+        });
         return popupWindow;
     }
 
@@ -61,10 +63,12 @@ public class WaitScreen {
      * 弹出等待提示框
      */
     public PopupWindow show(String message) {
-        popupWindow.showAsDropDown(view);
-        Animation rotateAnim = AnimationUtils.loadAnimation(context, R.anim.rotate_progress);
-        progress.startAnimation(rotateAnim);
-        messageView.setText(message);
+        context.getWindow().getDecorView().post(() -> {
+            popupWindow.showAsDropDown(view);
+            Animation rotateAnim = AnimationUtils.loadAnimation(context, R.anim.rotate_progress);
+            progress.startAnimation(rotateAnim);
+            messageView.setText(message);
+        });
         return popupWindow;
     }
 

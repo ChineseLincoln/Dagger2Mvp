@@ -22,5 +22,6 @@ import dagger.Component;
         modules = {OkHttpModule.class,
                 RetrofitModule.class})
 public interface NetComponent {
+
     void inject(MainPresenterImpl mainPresenter);
 }

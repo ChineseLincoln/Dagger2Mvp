@@ -17,7 +17,9 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".function.test.TestActivity"></activity>
+        <activity android:name=".function.test.TestActivity" />
+        <activity android:name=".function.testdetail.TestDetailActivity" />
+        <activity android:name=".function.mode.ModeActivity"></activity>
     </application>
 
 </manifest>

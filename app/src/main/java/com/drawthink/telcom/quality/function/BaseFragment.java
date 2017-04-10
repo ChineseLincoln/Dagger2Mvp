@@ -60,6 +60,14 @@ public abstract class BaseFragment<P extends BasePresenter>
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        afterViews();
+    }
+
+    protected abstract void afterViews();
+
     protected abstract int bindLayout();
 
     protected abstract void injectDagger(AppComponent appComponent);

@@ -66,6 +66,7 @@ public abstract class BaseActivity<P extends BasePresenter>
     public void showWait() {
         WaitScreen waitScreen = new WaitScreen(this);
         waitScreens.push(waitScreen);
+        waitScreen.show();
         handler.postDelayed(waitScreen::show, 200);
     }
 
@@ -73,6 +74,7 @@ public abstract class BaseActivity<P extends BasePresenter>
     public void showWait(String message) {
         WaitScreen waitScreen = new WaitScreen(this);
         waitScreens.push(waitScreen);
+        waitScreen.show(message);
         handler.postDelayed(()-> waitScreen.show(message) , 200);
     }
 
