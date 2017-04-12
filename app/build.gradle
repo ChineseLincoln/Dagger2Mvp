@@ -60,7 +60,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'com.squareup.okhttp3:mockwebserver:3.6.0'
     compile project(':widget')
-    compile project(':downloadmanager')
+    compile project(':updatemanager')
     compile rootProject.ext.dependencies["appcompat-v7"]
     compile rootProject.ext.dependencies["glide"]
     compile rootProject.ext.dependencies["glide-okhttp3-integration"]

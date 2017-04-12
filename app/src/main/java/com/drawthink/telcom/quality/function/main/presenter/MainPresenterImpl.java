@@ -23,10 +23,6 @@ public class MainPresenterImpl
         extends BasePresenterImpl<MainContract.View>
         implements MainContract.Presenter {
 
-    @Inject
-    @Named("taobao")
-    Retrofit retrofit;
-
     public MainPresenterImpl(MainContract.View view) {
         super(view);
     }
@@ -38,11 +34,6 @@ public class MainPresenterImpl
 
     @Override
     public void loadData() {
-        if(retrofit ==null){
-            System.out.println("inject error");
-        }else{
-            System.out.println("inject ok");
-        }
     }
 
 }

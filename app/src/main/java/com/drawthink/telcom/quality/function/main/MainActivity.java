@@ -2,12 +2,15 @@ package com.drawthink.telcom.quality.function.main;
 
 import android.widget.Button;
 
+import com.blankj.utilcode.utils.AppUtils;
 import com.drawthink.telcom.quality.R;
 import com.drawthink.telcom.quality.component.AppComponent;
 import com.drawthink.telcom.quality.function.ToolBarActivity;
 import com.drawthink.telcom.quality.function.main.component.DaggerMainComponent;
 import com.drawthink.telcom.quality.function.main.contract.MainContract;
 import com.drawthink.telcom.quality.function.main.module.MainModule;
+
+import org.unreal.update.UpdateManager;
 
 import butterknife.BindView;
 
@@ -31,6 +34,8 @@ public class MainActivity
                 .mainModule(new MainModule(this))
                 .build()
                 .inject(this);
+//        new UpdateManager(this).checkUpdate(AppUtils.getAppVersionCode(this),
+//                Throwable::printStackTrace);
     }
 
     @Override

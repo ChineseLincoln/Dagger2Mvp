@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    retrolambda {//指定将源码编译的级别，使用下列代码，会将代码编译到兼容1.7的字节码格式
+        javaVersion JavaVersion.VERSION_1_7
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile rootProject.ext.dependencies["okhttp3"]
+    compile rootProject.ext.dependencies["okhttp3-logging-interceptor"]
+    compile rootProject.ext.dependencies["fastjson"]
+    compile rootProject.ext.dependencies["rxjava2"]
+    compile rootProject.ext.dependencies["rxpermissions"]
+    compile 'zlc.season:rxdownload2:2.0.0-beta4'
+}

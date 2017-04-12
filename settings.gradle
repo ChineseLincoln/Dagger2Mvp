@@ -1,1 +1,1 @@
-include ':app', ':widget', ':downloadmanager'
+include ':app', ':widget', ':updatemanager'
