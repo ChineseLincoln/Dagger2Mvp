@@ -14,7 +14,6 @@ public final class UpdateConfig {
 
     public static final String FIR_URL = "http://api.fir.im/apps/latest/";
     public static final String FIR_APP_ID = "";
-//    public static final String FIR_API_TOKEN = "";
     public static final String FIR_API_TOKEN = "";
     public static final String FIR_TYPE = "android";
 

@@ -1,17 +1,18 @@
 package org.unreal.update;
 
+import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
-import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import org.unreal.download.R;
 import org.unreal.update.config.BroadCastActions;
 import org.unreal.update.config.UpdateConfig;
 import org.unreal.update.vo.OnlineAppInfo;
@@ -43,10 +44,14 @@ public class UpdateManager {
     private final OkHttpClient client;
     private String firUrl;
     private Activity context;
+    private final RxDownload rxDownload;
+    private final RxPermissions permissions;
 
     public UpdateManager(Activity context) {
         this.context = context;
         client = new OkHttpClient();
+        rxDownload = RxDownload.getInstance(context);
+        permissions = new RxPermissions(context);
         firUrl = String.format("%s%s?api_token=%s&type=%s",
                 UpdateConfig.FIR_URL,
                 UpdateConfig.FIR_APP_ID,
@@ -114,9 +119,20 @@ public class UpdateManager {
     }
 
     private void fetchApk(OnlineAppInfo appInfo) {
-        RxDownload instance = RxDownload.getInstance(context);
-        instance.download(appInfo.getInstallUrl())                       //只传url即可
-                .subscribeOn(Schedulers.io())
+
+        permissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE) //申请存储卡权限
+                .doOnNext(granted -> {
+                    if (!granted) {  //权限被拒绝
+                        String msg = "需要存储权限,请到设置-应用-"
+                                + context.getResources().getString(R.string.app_name)
+                                + "权限中信任存储权限!";
+                        Toast.makeText(context,
+                                msg,
+                                Toast.LENGTH_LONG).show();
+                    }
+                })
+                .observeOn(Schedulers.io())
+                .compose(rxDownload.transform(appInfo.getInstallUrl()))  //download
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(downloadStatus -> {
                     Intent intent = new Intent(context, UpdateReceiver.class);
@@ -132,7 +148,9 @@ public class UpdateManager {
                     intent.setAction(BroadCastActions.ACTION_ERROR);
                     context.sendBroadcast(intent);
                 }, () -> {
-                    File[] realFiles = instance.getRealFiles(appInfo.getInstallUrl());
+                    Intent intent = new Intent(context, UpdateReceiver.class);
+                    intent.setAction(BroadCastActions.ACTION_DONE);
+                    File[] realFiles = rxDownload.getRealFiles(appInfo.getInstallUrl());
                     if (realFiles != null) {
                         File file = realFiles[0];
                         installApk(file);
@@ -179,6 +197,8 @@ public class UpdateManager {
     public interface UpdateStateListener {
         void checkStateError(Throwable throwable);
     }
+
+
 }
 
 

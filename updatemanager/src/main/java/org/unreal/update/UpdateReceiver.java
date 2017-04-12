@@ -36,6 +36,9 @@ public class UpdateReceiver extends BroadcastReceiver {
             case BroadCastActions.ACTION_ERROR:
                 views.setTextViewText(R.id.progressStatus,"下载出错,请重新下载!");
                 manager.notify(0, notification);
+                break;
+            case BroadCastActions.ACTION_DONE:
+                views.setTextViewText(R.id.progressStatus,"下载完成,安装中...");
                 notification.flags |= Notification.FLAG_AUTO_CANCEL;
                 manager.notify(0, notification);
                 break;
@@ -53,7 +56,7 @@ public class UpdateReceiver extends BroadcastReceiver {
     private void initNotificationForLowVersion(Context context) {
         manager = (NotificationManager)context. getSystemService(Context.NOTIFICATION_SERVICE);
         views = new RemoteViews(context.getPackageName(), R.layout.notification_update);
-        Notification.Builder builder=new Notification.Builder(context.getApplicationContext());
+        Notification.Builder builder = new Notification.Builder(context.getApplicationContext());
         notification = builder.setAutoCancel(false).setSmallIcon(R.mipmap.ic_launcher)
                 .setContentText("下载中")
                 .setContentTitle(context.getResources().getString(R.string.app_name)).
