@@ -4,13 +4,13 @@
 1. 统一使用config.gradle管理依赖版本
 1. 可使用的Dagger2 scope 注解 
 
-|注解|生命周期|
-|---|：-----|
+|  annontations  |scope|
+| -------------- |:-------:|
 |@AppScope|app生命周期|
 |@ActivityScope|Activity生命周期|
 |@FragmentScope|Fragments生命周期|
 |@ServiceScope|Service生命周期|
-|@ReceiverScope|Receiver生命周期
+|@ReceiverScope|Receiver生命周期|
 |@ProviderScope|ContentProvider生命周期|
-|@UserScope|用户自定义生命周期（如自定义View）|
+|@UserScope|用户自定义生命周期(如自定义View)|
 |@SessionScope|网络请求相关生命周期|
