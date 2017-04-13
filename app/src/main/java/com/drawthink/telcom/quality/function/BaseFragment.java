@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.blankj.utilcode.utils.ToastUtils;
+import com.drawthink.telcom.quality.QualityApplication;
 import com.drawthink.telcom.quality.component.AppComponent;
+import com.github.aleksandermielczarek.napkin.Napkin;
 
 import org.unreal.widget.window.WaitScreen;
 
@@ -48,7 +50,7 @@ public abstract class BaseFragment<P extends BasePresenter>
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        injectDagger(QualityApplication.getAppComponent());
+        injectDagger(Napkin.provideAppComponent(this));
         compositeDisposable = new CompositeDisposable();
     }
 

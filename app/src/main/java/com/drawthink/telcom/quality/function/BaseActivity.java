@@ -1,11 +1,14 @@
 package com.drawthink.telcom.quality.function;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 
 import com.blankj.utilcode.utils.ToastUtils;
+import com.drawthink.telcom.quality.QualityApplication;
 import com.drawthink.telcom.quality.component.AppComponent;
+import com.github.aleksandermielczarek.napkin.Napkin;
 import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
@@ -52,7 +55,7 @@ public abstract class BaseActivity<P extends BasePresenter>
             setContentView(bindLayout());
         }
         unbinder = ButterKnife.bind(this);
-        injectDagger(QualityApplication.getAppComponent());
+        injectDagger(Napkin.provideAppComponent(this));
         if(presenter != null) {
             presenter.bindLifeCycle(
                     RxLifecycleAndroid.bindActivity(lifecycle()));
@@ -103,6 +106,11 @@ public abstract class BaseActivity<P extends BasePresenter>
             WaitScreen waitScreen = waitScreens.pop();
             waitScreen.dismiss();
         }
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 
     public boolean isCustomerView(){

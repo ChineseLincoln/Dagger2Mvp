@@ -6,6 +6,7 @@ def okhttp3_integration_version = "1.4.0"
 def dagger_version = "2.7"
 def fastjson_version = "1.1.56.android"
 def rxpermissions_version = "0.9.3@aar"
+def napkin_version = "0.7.0"
 
 ext{
     android = [
@@ -42,7 +43,9 @@ ext{
             "android-database-sqlcipher"    : "net.zetetic:android-database-sqlcipher:${sqlcipher_version}@aar",
             "dbflow-rx2"                    : "com.github.Raizlabs.DBFlow:dbflow-rx2:${dbflow_version}",
             "fastjson"                      : "com.alibaba:fastjson:${fastjson_version}",
-            "rxpermissions"                 : "com.tbruyelle.rxpermissions2:rxpermissions:${rxpermissions_version}"
+            "rxpermissions"                 : "com.tbruyelle.rxpermissions2:rxpermissions:${rxpermissions_version}",
+            "napkin"                        : "com.github.AleksanderMielczarek.Napkin:napkin:${napkin_version}",
+            "napkin-scope"                  : "com.github.AleksanderMielczarek.Napkin:scope:${napkin_version}"
     ]
 
     apt = [

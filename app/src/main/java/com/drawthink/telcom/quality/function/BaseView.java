@@ -1,5 +1,7 @@
 package com.drawthink.telcom.quality.function;
 
+import android.content.Context;
+
 import org.unreal.widget.window.WaitScreen;
 
 /**
@@ -24,5 +26,7 @@ public interface BaseView {
     void toast(String message);
 
     void finish();
+
+    Context getContext();
 
 }

@@ -1,8 +1,8 @@
 package com.drawthink.telcom.quality.function.main.module;
 
-import com.drawthink.telcom.quality.component.field.ActivityScoped;
 import com.drawthink.telcom.quality.function.main.contract.MainContract;
 import com.drawthink.telcom.quality.function.main.presenter.MainPresenterImpl;
+import com.github.aleksandermielczarek.napkin.scope.ActivityScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -26,13 +26,13 @@ public class MainModule {
         this.view = view;
     }
 
-    @ActivityScoped
+    @ActivityScope
     @Provides
     MainContract.View providerView(){
         return view;
     }
 
-    @ActivityScoped
+    @ActivityScope
     @Provides
     MainContract.Presenter providerPresenter(MainContract.View view){
         return new MainPresenterImpl(view);

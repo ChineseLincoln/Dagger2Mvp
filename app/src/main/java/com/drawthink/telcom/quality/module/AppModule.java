@@ -6,8 +6,7 @@ import com.blankj.utilcode.utils.SPUtils;
 import com.drawthink.telcom.quality.data.local.preference.UserPreference;
 import com.drawthink.telcom.quality.data.local.preference.field.App;
 import com.drawthink.telcom.quality.data.local.preference.field.User;
-
-import javax.inject.Singleton;
+import com.github.aleksandermielczarek.napkin.scope.AppScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -31,27 +30,27 @@ public class AppModule {
         this.appContext = appContext;
     }
 
-    @Singleton
+    @AppScope
     @Provides
     public Application providerApplication(){
         return appContext;
     }
 
-    @Singleton
+    @AppScope
     @Provides
     @App
     public SPUtils providerAppSp(){
         return  new SPUtils("app");
     }
 
-    @Singleton
+    @AppScope
     @Provides
     @User
     public SPUtils providerUserSp(){
         return  new SPUtils("user");
     }
 
-    @Singleton
+    @AppScope
     @Provides
     public UserPreference providerUserPreference(@User SPUtils spUtils){
         return new UserPreference(spUtils);

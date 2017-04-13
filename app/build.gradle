@@ -82,6 +82,8 @@ dependencies {
     compile rootProject.ext.dependencies["dbflow"]
     compile rootProject.ext.dependencies["dbflow-sqlcipher"]
     compile rootProject.ext.dependencies["android-database-sqlcipher"]
+    compile rootProject.ext.dependencies["napkin"]
+    compile rootProject.ext.dependencies["napkin-scope"]
     apt rootProject.ext.apt["dagger-compiler"]
     apt rootProject.ext.apt["butterknife-compiler"]
     apt rootProject.ext.apt["dbflow-processor"]

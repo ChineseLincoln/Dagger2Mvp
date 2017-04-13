@@ -1,9 +1,9 @@
 package com.drawthink.telcom.quality.function.main.component;
 
 import com.drawthink.telcom.quality.component.AppComponent;
-import com.drawthink.telcom.quality.component.field.ActivityScoped;
 import com.drawthink.telcom.quality.function.main.MainActivity;
 import com.drawthink.telcom.quality.function.main.module.MainModule;
+import com.github.aleksandermielczarek.napkin.scope.ActivityScope;
 
 import dagger.Component;
 
@@ -17,7 +17,7 @@ import dagger.Component;
  *
  * @version 1.0.0 <br/>
  */
-@ActivityScoped
+@ActivityScope
 @Component(dependencies = AppComponent.class , modules = MainModule.class)
 public interface MainComponent {
     void inject(MainActivity mainActivity);

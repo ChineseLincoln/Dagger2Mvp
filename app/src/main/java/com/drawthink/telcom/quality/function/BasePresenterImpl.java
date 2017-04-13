@@ -1,7 +1,9 @@
 package com.drawthink.telcom.quality.function;
 
+import com.drawthink.telcom.quality.QualityApplication;
 import com.drawthink.telcom.quality.component.DaggerNetComponent;
 import com.drawthink.telcom.quality.component.NetComponent;
+import com.github.aleksandermielczarek.napkin.Napkin;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
 /**
@@ -25,7 +27,7 @@ public abstract class BasePresenterImpl<V extends BaseView> implements BasePrese
         NetComponent netComponent
                 = DaggerNetComponent
                 .builder()
-                .appComponent(QualityApplication.getAppComponent())
+                .appComponent(Napkin.provideAppComponent(view.getContext()))
                 .build();
         injectNetComponent(netComponent);
     }

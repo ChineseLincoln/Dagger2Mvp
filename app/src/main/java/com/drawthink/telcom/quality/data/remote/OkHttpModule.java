@@ -4,9 +4,11 @@ package com.drawthink.telcom.quality.data.remote;
 import android.app.Application;
 
 import com.blankj.utilcode.utils.NetworkUtils;
-import com.blankj.utilcode.utils.StringUtils;
-import com.drawthink.telcom.quality.component.field.NetScoped;
+import com.drawthink.telcom.quality.data.remote.qualifiers.DefaultClient;
+import com.drawthink.telcom.quality.data.remote.qualifiers.LocalClient;
+import com.drawthink.telcom.quality.data.remote.qualifiers.NoCacheClient;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.github.aleksandermielczarek.napkin.scope.SessionScope;
 import com.ncornette.cache.OkCacheControl;
 
 import java.util.concurrent.TimeUnit;
@@ -16,10 +18,7 @@ import javax.inject.Named;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Cache;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 import static java.util.concurrent.TimeUnit.MINUTES;
@@ -34,13 +33,13 @@ import static java.util.concurrent.TimeUnit.MINUTES;
  *
  * @version 1.0.0 <br/>
  */
-@NetScoped
+@SessionScope
 @Module
 public class OkHttpModule {
 
     @Provides
-    @NetScoped
-    @Named("default")
+    @SessionScope
+    @DefaultClient
     public OkHttpClient providerDefaultOkHttpClient(Application application) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -58,8 +57,8 @@ public class OkHttpModule {
     }
 
     @Provides
-    @NetScoped
-    @Named("noCache")
+    @SessionScope
+    @NoCacheClient
     public OkHttpClient providerNoCacheOkHttpClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -73,8 +72,8 @@ public class OkHttpModule {
 
 
     @Provides
-    @NetScoped
-    @Named("local")
+    @SessionScope
+    @LocalClient
     public OkHttpClient providerLocalServiceOkHttpClient(Application application) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

@@ -1,6 +1,7 @@
 package com.drawthink.telcom.quality.component;
 
 import com.drawthink.telcom.quality.module.AppModule;
+import com.github.aleksandermielczarek.napkin.scope.AppScope;
 
 import javax.inject.Singleton;
 
@@ -16,7 +17,7 @@ import dagger.Component;
  *
  * @version 1.0.0 <br/>
  */
-@Singleton
+@AppScope
 @Component(modules = AppModule.class)
 public interface AppComponent {
 

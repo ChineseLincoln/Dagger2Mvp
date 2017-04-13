@@ -2,8 +2,8 @@ package com.drawthink.telcom.quality.component;
 
 import com.drawthink.telcom.quality.data.remote.OkHttpModule;
 import com.drawthink.telcom.quality.data.remote.RetrofitModule;
-import com.drawthink.telcom.quality.component.field.NetScoped;
 import com.drawthink.telcom.quality.function.main.presenter.MainPresenterImpl;
+import com.github.aleksandermielczarek.napkin.scope.SessionScope;
 
 import dagger.Component;
 
@@ -17,7 +17,7 @@ import dagger.Component;
  *
  * @version 1.0.0 <br/>
  */
-@NetScoped
+@SessionScope
 @Component(dependencies = AppComponent.class,
         modules = {OkHttpModule.class,
                 RetrofitModule.class})
