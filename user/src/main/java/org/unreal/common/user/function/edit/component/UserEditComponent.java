@@ -1,9 +1,8 @@
 package org.unreal.common.user.function.edit.component;
 
-import org.unreal.common.core.component.CoreComponent;
-
 import com.github.aleksandermielczarek.napkin.scope.ActivityScope;
 
+import org.unreal.common.core.component.CoreComponent;
 import org.unreal.common.user.function.edit.UserEditActivity;
 import org.unreal.common.user.function.edit.module.UserEditModule;
 

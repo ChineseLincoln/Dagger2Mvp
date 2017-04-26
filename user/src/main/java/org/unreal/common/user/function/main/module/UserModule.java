@@ -1,6 +1,6 @@
 package org.unreal.common.user.function.main.module;
 
-import com.github.aleksandermielczarek.napkin.scope.UserScope;
+import com.github.aleksandermielczarek.napkin.scope.ActivityScope;
 
 import org.unreal.common.user.function.main.contract.UserContract;
 import org.unreal.common.user.function.main.presenter.UserPresenterImpl;
@@ -27,13 +27,13 @@ public class UserModule {
         this.view = view;
     }
 
-    @UserScope
+    @ActivityScope
     @Provides
     UserContract.View providerView(){
         return view;
     }
 
-    @UserScope
+    @ActivityScope
     @Provides
     UserContract.Presenter providerPresenter(UserContract.View view){
         return new UserPresenterImpl(view);

@@ -1,7 +1,10 @@
 package org.unreal.common.user.http.component;
 
-import org.unreal.common.core.component.NetComponent;
 import com.github.aleksandermielczarek.napkin.scope.UserScope;
+
+import org.unreal.common.core.component.NetComponent;
+import org.unreal.common.user.function.edit.presenter.UserEditPresenterImpl;
+import org.unreal.common.user.function.main.presenter.UserPresenterImpl;
 import org.unreal.common.user.http.module.UserHttpModule;
 
 import dagger.Component;
@@ -17,7 +20,11 @@ import dagger.Component;
  * @version 1.0.0 <br/>
  */
 @UserScope
-@Component(dependencies = NetComponent.class , modules = UserHttpModule.class)
+@Component(dependencies = NetComponent.class, modules = UserHttpModule.class)
 public interface UserHttpComponent {
+
+    void inject(UserPresenterImpl userPresenter);
+
+    void inject(UserEditPresenterImpl userEditPresenter);
 }
 

@@ -4,6 +4,7 @@ package org.unreal.common.user.http.module;
 import com.github.aleksandermielczarek.napkin.scope.UserScope;
 
 import org.unreal.common.core.http.qualifiers.DefaultClient;
+import org.unreal.common.user.http.server.UserServer;
 
 import dagger.Module;
 import dagger.Provides;
@@ -27,7 +28,7 @@ public class UserHttpModule {
 
     @UserScope
     @Provides
-    public Retrofit providerUserRetrofit(@DefaultClient OkHttpClient okHttpClient){
+    public Retrofit providerUserRetrofit(@DefaultClient OkHttpClient okHttpClient) {
         String BASE_URL = "http://192.168.0.186:8082/HospitalServer/";
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -35,6 +36,12 @@ public class UserHttpModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(FastJsonConverterFactory.create())
                 .build();
+    }
+
+    @UserScope
+    @Provides
+    public UserServer providerUserServer(Retrofit retrofit){
+        return retrofit.create(UserServer.class);
     }
 }
 

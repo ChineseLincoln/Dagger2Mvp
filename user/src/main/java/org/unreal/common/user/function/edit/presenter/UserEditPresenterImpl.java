@@ -3,6 +3,7 @@ package org.unreal.common.user.function.edit.presenter;
 import org.unreal.common.core.base.BasePresenterImpl;
 import org.unreal.common.core.component.NetComponent;
 import org.unreal.common.user.function.edit.contract.UserEditContract;
+import org.unreal.common.user.http.component.DaggerUserHttpComponent;
 
 /**
  * <b>类名称：</b> UserEditPresenter 实现类<br/>
@@ -24,7 +25,7 @@ public class UserEditPresenterImpl
 
     @Override
     public void injectNetComponent(NetComponent netComponent) {
-        DaggerUserHttpHttpComponent
+        DaggerUserHttpComponent
                 .builder()
                 .netComponent(netComponent)
                 .build()

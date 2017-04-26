@@ -3,8 +3,8 @@ package org.unreal.common.user.function.main.presenter;
 import org.unreal.common.core.base.BasePresenterImpl;
 import org.unreal.common.core.component.NetComponent;
 import org.unreal.common.core.http.covert.LocalResponseTransformer;
-import org.unreal.common.user.function.http.component.DaggerUserHttpComponent;
-import org.unreal.common.user.function.http.server.UserServer;
+import org.unreal.common.user.http.component.DaggerUserHttpComponent;
+import org.unreal.common.user.http.server.UserServer;
 import org.unreal.common.user.function.main.contract.UserContract;
 
 import javax.inject.Inject;

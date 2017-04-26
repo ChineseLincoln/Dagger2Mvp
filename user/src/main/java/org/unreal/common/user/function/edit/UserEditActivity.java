@@ -3,7 +3,7 @@ package org.unreal.common.user.function.edit;
 import org.unreal.common.user.R;
 import org.unreal.common.core.base.BaseActivity;
 import org.unreal.common.core.component.CoreComponent;
-import org.unreal.common.user.function.useredit.component.DaggerUserEditComponent;
+import org.unreal.common.user.function.edit.component.DaggerUserEditComponent;
 import org.unreal.common.user.function.edit.contract.UserEditContract;
 import org.unreal.common.user.function.edit.module.UserEditModule;
 

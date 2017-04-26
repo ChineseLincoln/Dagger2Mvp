@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.blankj.utilcode.util.ToastUtils;
-import com.github.aleksandermielczarek.napkin.Napkin;
 
 import org.unreal.common.core.component.CoreComponent;
+import org.unreal.common.core.core.UnrealCore;
 import org.unreal.widget.window.WaitScreen;
 
 import java.util.Stack;
@@ -49,7 +49,7 @@ public abstract class BaseFragment<P extends BasePresenter>
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        injectDagger(Napkin.provideAppComponent(this));
+        injectDagger(UnrealCore.getCoreComponent());
         compositeDisposable = new CompositeDisposable();
     }
 

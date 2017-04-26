@@ -1,6 +1,6 @@
 package org.unreal.common.user.function.main.component;
 
-import com.github.aleksandermielczarek.napkin.scope.UserScope;
+import com.github.aleksandermielczarek.napkin.scope.ActivityScope;
 
 import org.unreal.common.core.component.CoreComponent;
 import org.unreal.common.user.function.main.UserActivity;
@@ -18,7 +18,7 @@ import dagger.Component;
  *
  * @version 1.0.0 <br/>
  */
-@UserScope
+@ActivityScope
 @Component(modules = UserModule.class, dependencies = CoreComponent.class)
 public interface UserComponent {
 

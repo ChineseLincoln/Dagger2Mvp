@@ -1,4 +1,4 @@
-package org.unreal.common.user.function.http.vo;
+package org.unreal.common.user.http.vo;
 
 /**
  * <b>类名称：</b> User <br/>
