@@ -22,9 +22,10 @@ public final class UnrealCore{
 
     private static CoreComponent coreComponent;
     private static NetComponent netComponent;
+    private static ActivityTaskManager taskManager;
 
-    private UnrealCore() {
-
+    private UnrealCore() throws IllegalAccessException {
+        throw new IllegalAccessException("can not new instance");
     }
 
     public static void init(Application application){

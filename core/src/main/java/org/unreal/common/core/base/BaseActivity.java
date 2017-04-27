@@ -1,5 +1,6 @@
 package org.unreal.common.core.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +11,7 @@ import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import org.unreal.common.core.component.CoreComponent;
+import org.unreal.common.core.core.ActivityTaskManager;
 import org.unreal.common.core.core.UnrealCore;
 import org.unreal.widget.window.WaitScreen;
 
@@ -60,6 +62,7 @@ public abstract class BaseActivity<P extends BasePresenter>
                     RxLifecycleAndroid.bindActivity(lifecycle()));
         }
         afterViews();
+        ActivityTaskManager.getInstance().pushActivity(this);
     }
 
 
@@ -106,6 +109,18 @@ public abstract class BaseActivity<P extends BasePresenter>
             WaitScreen waitScreen = waitScreens.pop();
             waitScreen.dismiss();
         }
+        ActivityTaskManager.getInstance().removeActivity(this);
+    }
+
+    @Override
+    public final void finishAll() {
+        ActivityTaskManager.getInstance().finshAllActivities();
+    }
+
+    @SafeVarargs
+    @Override
+    public final void finish(Class<? extends Activity>... activityClasses) {
+        ActivityTaskManager.getInstance().finshActivities(activityClasses);
     }
 
     @Override

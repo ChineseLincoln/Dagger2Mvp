@@ -1,5 +1,6 @@
 package org.unreal.common.core.base;
 
+import android.app.Activity;
 import android.content.Context;
 
 import org.unreal.widget.window.WaitScreen;
@@ -26,6 +27,10 @@ public interface BaseView {
     void toast(String message);
 
     void finish();
+
+    void finishAll();
+
+    void finish(Class<? extends Activity>... activityClasses);
 
     Context getContext();
 

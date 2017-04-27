@@ -1,16 +1,21 @@
 package org.unreal.common.user.function.main;
 
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
 
 import org.unreal.common.core.base.BaseActivity;
 import org.unreal.common.core.component.CoreComponent;
 import org.unreal.common.core.preference.AppPreference;
 import org.unreal.common.user.R;
+import org.unreal.common.user.R2;
 import org.unreal.common.user.function.main.component.DaggerUserComponent;
 import org.unreal.common.user.function.main.contract.UserContract;
 import org.unreal.common.user.function.main.module.UserModule;
 
 import javax.inject.Inject;
+
+import butterknife.BindView;
 
 /**
  * <b>类名称：</b> UserActivity <br/>
@@ -23,13 +28,17 @@ import javax.inject.Inject;
  * @version 1.0.0 <br/>
  */
 public class UserActivity extends BaseActivity<UserContract.Presenter>
-        implements UserContract.View{
+        implements UserContract.View {
 
     @Inject
     AppPreference appPreference;
 
     @Inject
     UserContract.Presenter presenter;
+    @BindView(R2.id.editText)
+    EditText editText;
+    @BindView(R2.id.button)
+    Button button;
 
     @Override
     protected void injectDagger(CoreComponent coreComponent) {
@@ -47,10 +56,10 @@ public class UserActivity extends BaseActivity<UserContract.Presenter>
 
     @Override
     public void afterViews() {
-        appPreference.put("UserActivity","say hello");
-        Log.e("UserActivity" , "save Preference");
+        appPreference.put("UserActivity", "say hello");
+        Log.e("UserActivity", "save Preference");
         String userActivity = appPreference.getString("UserActivity");
-        Log.e("UserActivity" , "save Preference result is --->"+userActivity);
+        Log.e("UserActivity", "save Preference result is --->" + userActivity);
         presenter.loadData();
     }
 }

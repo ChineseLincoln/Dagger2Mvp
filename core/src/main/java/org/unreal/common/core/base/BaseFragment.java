@@ -1,5 +1,6 @@
 package org.unreal.common.core.base;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import com.blankj.utilcode.util.ToastUtils;
 
 import org.unreal.common.core.component.CoreComponent;
+import org.unreal.common.core.core.ActivityTaskManager;
 import org.unreal.common.core.core.UnrealCore;
 import org.unreal.widget.window.WaitScreen;
 
@@ -107,6 +109,17 @@ public abstract class BaseFragment<P extends BasePresenter>
     @Override
     public void finish() {
         getActivity().finish();
+    }
+
+    @Override
+    public final void finishAll() {
+        ActivityTaskManager.getInstance().finshAllActivities();
+    }
+
+    @SafeVarargs
+    @Override
+    public final void finish(Class<? extends Activity>... activityClasses) {
+        ActivityTaskManager.getInstance().finshActivities(activityClasses);
     }
 
     @Override
