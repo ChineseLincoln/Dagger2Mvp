@@ -2,6 +2,16 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 
+
+ext.majorNumber = 1
+ext.minorNumber = 0
+ext.revisionNumber = 'git rev-list HEAD --count'.execute().getText().trim().toInteger()
+ext.tempRevisionDescription = 'git describe --always'.execute().getText().trim()
+ext.revisionDescription = (tempRevisionDescription == null
+        || (tempRevisionDescription).size() == 0 ) ?
+        new Date().format("yyMMdd") :
+        tempRevisionDescription
+
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
@@ -9,13 +19,33 @@ android {
         applicationId rootProject.ext.android.applicationId
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        versionCode getVersionCode(false)
+        versionName getVersionName(false)
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        config {
+            keyAlias 'drawthink'
+            keyPassword 'drawthink'
+            storeFile file('../mykeystore')
+            storePassword 'drawthink'
+        }
+    }
+
     buildTypes {
+
+        debug{
+            signingConfig signingConfigs.config
+            applicationIdSuffix ".debug"
+        }
+
         release {
+            signingConfig signingConfigs.config
             minifyEnabled false
+            shrinkResources false
+            //Zip代码压缩优化
+            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -50,6 +80,18 @@ android {
     configurations.all {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:2.0.1'
     }
+
+    applicationVariants.all { variant ->
+        if (variant.buildType.name == 'release') {
+            variant.mergedFlavor.versionCode = getVersionCode(true)
+            variant.mergedFlavor.versionName = getVersionName(true)
+        } else if (variant.buildType.name == 'debug') {
+            variant.mergedFlavor.versionCode = getVersionCode(false)
+            variant.mergedFlavor.versionName = getVersionName(false)
+        }
+        println(variant.buildType.name + "version code is --->" + variant.mergedFlavor.versionCode)
+        println(variant.buildType.name + "version name is --->" + variant.mergedFlavor.versionName)
+    }
 }
 
 dependencies {
@@ -63,4 +105,29 @@ dependencies {
     apt rootProject.ext.apt["dagger-compiler"]
     apt rootProject.ext.apt["butterknife-compiler"]
     apt rootProject.ext.apt["dbflow-processor"]
+}
+
+def getVersionCode(boolean isRelease) {
+    // 正式环境
+    if (isRelease) {
+        majorNumber * 1000000 + minorNumber * 10000 + revisionNumber
+    }
+    // debug环境
+    else {
+        Integer.parseInt(new Date().format("yyMMddHHmm"))
+    }
+}
+
+//Major_Version_Number.Minor_Version_Number[Revision_Number[.Build_Number]]
+def getVersionName(boolean isRelease) {
+    // 正式环境
+    if (isRelease) {
+        majorNumber + "." + minorNumber + "." + revisionNumber + "." + revisionDescription
+    }
+    // debug环境
+    else {
+        String today = new Date().format("yyMMdd")
+        String time = new Date().format("HHmmss")
+        majorNumber + "." + minorNumber + "." + revisionNumber + ".$today.$time." + revisionDescription
+    }
 }

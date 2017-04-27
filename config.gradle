@@ -14,14 +14,13 @@ def traceur_version = "1.0.1"
 def rxdownload_version = "2.0.0-beta4"
 
 ext{
+
     android = [
         compileSdkVersion:25,
         buildToolsVersion:"25.0.2",
         applicationId:"com.drawthink.telcom.quality",
         minSdkVersion:16,
         targetSdkVersion:25,
-        versionCode:100,
-        versionName:"1.0.0"
     ]
 
     dependencies = [

@@ -86,7 +86,7 @@ public class UpdateManager {
 
     private void showUpdateDialog(OnlineAppInfo appInfo) {
         context.runOnUiThread(() -> {
-            if (appInfo.getVersionShort().contains("force")) {
+            if (appInfo.getChangelog().contains("强制升级")) {
                 new AlertDialog.Builder(context).setTitle("发现新版本！")
                         .setMessage(appInfo.getChangelog())
                         .setPositiveButton("升级", (dialog, which) -> {
@@ -99,14 +99,16 @@ public class UpdateManager {
                     context.finish();
                 })
                         .show();
-            } else if (appInfo.getVersionShort().contains("test") && isDebug) {
-                new AlertDialog.Builder(context).setTitle("发现测试新版本！")
-                        .setMessage(appInfo.getChangelog())
-                        .setPositiveButton("升级", (dialog, which) -> {
-                            fetchApk(appInfo);
-                        }).setNegativeButton("取消", null)
-                        .show();
-            } else {
+            }
+//            else if (appInfo.getChangelog().contains("test") && isDebug) {
+//                new AlertDialog.Builder(context).setTitle("发现测试新版本！")
+//                        .setMessage(appInfo.getChangelog())
+//                        .setPositiveButton("升级", (dialog, which) -> {
+//                            fetchApk(appInfo);
+//                        }).setNegativeButton("取消", null)
+//                        .show();
+//            }
+            else {
                 new AlertDialog.Builder(context).setTitle("发现新版本！")
                         .setMessage(appInfo.getChangelog())
                         .setPositiveButton("升级", (dialog, which) -> {
