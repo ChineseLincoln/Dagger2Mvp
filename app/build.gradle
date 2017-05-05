@@ -102,6 +102,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(":update")
     compile project(":user")
+    compile project(":pay")
     apt rootProject.ext.apt["dagger-compiler"]
     apt rootProject.ext.apt["butterknife-compiler"]
     apt rootProject.ext.apt["dbflow-processor"]

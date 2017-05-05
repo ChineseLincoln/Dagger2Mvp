@@ -99,16 +99,7 @@ public class UpdateManager {
                     context.finish();
                 })
                         .show();
-            }
-//            else if (appInfo.getChangelog().contains("test") && isDebug) {
-//                new AlertDialog.Builder(context).setTitle("发现测试新版本！")
-//                        .setMessage(appInfo.getChangelog())
-//                        .setPositiveButton("升级", (dialog, which) -> {
-//                            fetchApk(appInfo);
-//                        }).setNegativeButton("取消", null)
-//                        .show();
-//            }
-            else {
+            }else {
                 new AlertDialog.Builder(context).setTitle("发现新版本！")
                         .setMessage(appInfo.getChangelog())
                         .setPositiveButton("升级", (dialog, which) -> {
