@@ -3,21 +3,20 @@ package org.unreal.common.update;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.IntentUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import org.unreal.common.config.UpdateConfig;
 import org.unreal.common.core.core.UnrealCore;
 import org.unreal.common.core.http.covert.ResponseTransformer;
+import org.unreal.common.update.config.AuthoritiesConfig;
 import org.unreal.common.update.config.BroadCastActions;
 import org.unreal.common.update.http.component.DaggerUpdateComponent;
 import org.unreal.common.update.http.server.FirServer;
 import org.unreal.common.update.http.vo.OnlineAppInfo;
-import org.unreal.common.config.UpdateConfig;
 
 import java.io.File;
 
@@ -144,29 +143,9 @@ public class UpdateManager {
                     File[] realFiles = rxDownload.getRealFiles(appInfo.getInstallUrl());
                     if (realFiles != null) {
                         File file = realFiles[0];
-                        installApk(file);
+                        IntentUtils.getInstallAppIntent(file, AuthoritiesConfig.AUTHOR);
                     }
                 });
-    }
-
-    private void installApk(File apk) {
-        if (!apk.exists()) {
-            return;
-        }
-        Uri data;
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            // "org.unreal.update"即是在清单文件中配置的authorities
-            data = FileProvider.getUriForFile(context, UpdateConfig.FILE_PROVIDER_AUTH, apk);
-            // 给目标应用一个临时授权
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        } else {
-            data = Uri.fromFile(apk);
-        }
-        intent.setDataAndType(data, "application/vnd.android.package-archive");
-        context.startActivity(intent);
-        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
     public interface UpdateStateListener {

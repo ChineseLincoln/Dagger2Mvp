@@ -9,9 +9,6 @@ import android.view.View;
 import org.unreal.common.application.R;
 import org.unreal.common.pay.PayFacade;
 import org.unreal.common.pay.PayResultListener;
-import org.unreal.common.pay.impl.alipay.AliPayConfig;
-import org.unreal.common.pay.impl.unionbank.UnionBankPayConfig;
-import org.unreal.common.pay.impl.weixin.WeiXinPayConfig;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -52,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button2:
-                facade.pay(new AliPayConfig.Builder().build());
+//                facade.pay(new AliPayConfig.Builder().with(this).build());
                 break;
             case R.id.button3:
-                facade.pay(new WeiXinPayConfig.Builder().build());
+//                facade.pay(new WeiXinPayConfig.Builder().with(this).build());
                 break;
             case R.id.button4:
-                facade.pay(new UnionBankPayConfig.Builder().build());
+//                facade.pay(new UnionBankPayConfig.Builder().with(this).build());
                 break;
         }
     }
