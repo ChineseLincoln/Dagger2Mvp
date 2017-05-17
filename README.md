@@ -4,3 +4,4 @@
 1. 去掉没用的Napkin（的确没什么用）
 1. update module 提供app下载能力，并可以检查升级，提示升级，下载升级安装包
 1. Pay module 实现支付宝，微信，银联支付，一行代码支付
+1. 使用JACK 编译支持Java8，替换retorlambda

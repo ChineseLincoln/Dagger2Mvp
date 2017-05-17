@@ -4,6 +4,9 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
+import org.unreal.common.config.RouterConfig;
 import org.unreal.common.core.base.BaseActivity;
 import org.unreal.common.core.component.CoreComponent;
 import org.unreal.common.core.preference.AppPreference;
@@ -27,6 +30,7 @@ import butterknife.BindView;
  *
  * @version 1.0.0 <br/>
  */
+@Route(path = RouterConfig.USER_MAIN)
 public class UserActivity extends BaseActivity<UserContract.Presenter>
         implements UserContract.View {
 

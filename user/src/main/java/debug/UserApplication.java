@@ -1,6 +1,7 @@
 package debug;
 
 import org.unreal.common.core.base.BaseApplication;
+import org.unreal.common.user.BuildConfig;
 
 /**
  * <b>类名称：</b> UserApplication <br/>
@@ -13,4 +14,8 @@ import org.unreal.common.core.base.BaseApplication;
  * @version 1.0.0 <br/>
  */
 public class UserApplication extends BaseApplication {
+    @Override
+    public boolean isDebug() {
+        return BuildConfig.DEBUG;
+    }
 }

@@ -11,4 +11,5 @@ package org.unreal.common.config;
  * @version 1.0.0 <br/>
  */
 public class RouterConfig {
+    public static final String USER_MAIN = "/user/main";
 }

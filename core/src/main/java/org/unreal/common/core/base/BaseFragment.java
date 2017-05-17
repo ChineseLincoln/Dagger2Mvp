@@ -103,7 +103,7 @@ public abstract class BaseFragment<P extends BasePresenter>
 
     @Override
     public void toast(String message) {
-        ToastUtils.showLongToastSafe(message);
+        ToastUtils.showLongSafe(message);
     }
 
     @Override

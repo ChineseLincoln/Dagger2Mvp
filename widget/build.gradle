@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -21,14 +19,9 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
-
-    retrolambda {//指定将源码编译的级别，使用下列代码，会将代码编译到兼容1.7的字节码格式
-        javaVersion JavaVersion.VERSION_1_7
-    }
-
 }
 
 dependencies {

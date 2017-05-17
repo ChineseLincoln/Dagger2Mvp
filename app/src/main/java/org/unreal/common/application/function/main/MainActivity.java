@@ -6,7 +6,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+
 import org.unreal.common.application.R;
+import org.unreal.common.config.RouterConfig;
 import org.unreal.common.pay.PayFacade;
 import org.unreal.common.pay.PayResultListener;
 
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.button2:
 //                facade.pay(new AliPayConfig.Builder().with(this).build());
+                ARouter.getInstance().build(RouterConfig.USER_MAIN).navigation();
                 break;
             case R.id.button3:
 //                facade.pay(new WeiXinPayConfig.Builder().with(this).build());

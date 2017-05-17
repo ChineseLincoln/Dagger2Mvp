@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -25,10 +23,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    retrolambda {//指定将源码编译的级别，使用下列代码，会将代码编译到兼容1.7的字节码格式
-        javaVersion JavaVersion.VERSION_1_7
-    }
-
 }
 
 
@@ -39,7 +33,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project (":core")
     compile project (":config")
-    apt rootProject.ext.apt["dagger-compiler"]
-    apt rootProject.ext.apt["butterknife-compiler"]
-    apt rootProject.ext.apt["dbflow-processor"]
+    annotationProcessor rootProject.ext.apt["dagger-compiler"]
 }

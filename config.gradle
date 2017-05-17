@@ -12,12 +12,17 @@ def rxpermissions_version = "0.9.3@aar"
 def napkin_version = "0.7.0"
 def traceur_version = "1.0.1"
 def rxdownload_version = "2.0.0-beta4"
+def arouter_version = "1.2.1.1"
+def arouter_annotation_version = "1.0.3"
+def arouter_compiler_version = "1.1.2.1"
 
 ext{
 
+    isDebug = true
+
     android = [
         compileSdkVersion:25,
-        buildToolsVersion:"25.0.2",
+        buildToolsVersion:"25.0.3",
         applicationId:"com.drawthink.telcom.quality",
         minSdkVersion:16,
         targetSdkVersion:25,
@@ -50,13 +55,16 @@ ext{
             "rxpermissions"                 : "com.tbruyelle.rxpermissions2:rxpermissions:${rxpermissions_version}",
             "napkin-scope"                  : "com.github.AleksanderMielczarek.Napkin:scope:${napkin_version}",
             "traceur"                       : "com.tspoon.traceur:traceur:${traceur_version}",
-            "rxdownload2"                   : "zlc.season:rxdownload2:${rxdownload_version}"
+            "rxdownload2"                   : "zlc.season:rxdownload2:${rxdownload_version}",
+            "arouter"                       : "com.alibaba:arouter-api:${arouter_version}",
+            "arouter-annotation"            : "com.alibaba:arouter-annotation:${arouter_annotation_version}"
     ]
 
     apt = [
             "dagger-compiler"               : "com.google.dagger:dagger-compiler:2.10",
             "butterknife-compiler"          : "com.jakewharton:butterknife-compiler:8.5.1",
-            "dbflow-processor"              : "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
+            "dbflow-processor"              : "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}",
+            "arouter-compiler"              : "com.alibaba:arouter-compiler:${arouter_compiler_version}"
     ]
 
 }

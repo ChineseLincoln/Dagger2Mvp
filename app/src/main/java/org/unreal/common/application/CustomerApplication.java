@@ -21,4 +21,9 @@ public class CustomerApplication extends BaseApplication {
         UnrealCore.init(this);
 
     }
+
+    @Override
+    public boolean isDebug() {
+        return BuildConfig.DEBUG;
+    }
 }
