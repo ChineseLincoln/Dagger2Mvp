@@ -20,10 +20,6 @@ android {
         versionCode getVersionCode(false)
         versionName getVersionName(false)
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-        jackOptions {
-            enabled true
-        }
     }
 
 

@@ -18,14 +18,20 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         if (isDebug.toBoolean()) {
             applicationId "org.unreal.common.user"
-            jackOptions {
-                enabled true
-            }
         }
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [ moduleName : project.getName() ]
             }
+        }
+    }
+
+    signingConfigs {
+        config {
+            keyAlias 'drawthink'
+            keyPassword 'drawthink'
+            storeFile file('../mykeystore')
+            storePassword 'drawthink'
         }
     }
 
